@@ -38,6 +38,7 @@ namespace Microsoft.eShopWeb.Web.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required]
+            [Display(Name = "User name")]
             public string UserName { get; set; }
 
             [Required]

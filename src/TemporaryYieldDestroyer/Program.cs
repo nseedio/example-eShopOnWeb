@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.eShopWeb.Infrastructure.Data;
 using Microsoft.eShopWeb.Infrastructure.Identity;
+using System;
 
 namespace TemporarуYieldDestroyer
 {
@@ -8,6 +9,8 @@ namespace TemporarуYieldDestroyer
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Destroying all yield");
+
             var options = new DbContextOptionsBuilder<CatalogContext>().UseSqlServer("Server=(localdb)\\mssqllocaldb;Integrated Security=true;Initial Catalog=NSeed.Microsoft.eShopOnWeb.CatalogDb;").Options;
             var catalogContext = new CatalogContext(options);
             catalogContext.Database.EnsureDeleted();
@@ -17,6 +20,10 @@ namespace TemporarуYieldDestroyer
             var identityContext = new AppIdentityDbContext(identityOptions);
             identityContext.Database.EnsureDeleted();
             identityContext.Database.Migrate();
+
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
+            Console.WriteLine("All yield successfully destroyed");
+            Console.ResetColor();
         }
     }
 }

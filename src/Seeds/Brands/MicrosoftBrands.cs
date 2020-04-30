@@ -1,16 +1,12 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.eShopWeb.ApplicationCore.Constants;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.eShopWeb.ApplicationCore.Entities;
 using Microsoft.eShopWeb.Infrastructure.Data;
-using Microsoft.eShopWeb.Infrastructure.Identity;
 using NSeed;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace Seeds.Brands
 {
-    [AlwaysRequired]
     public class MicrosoftBrands : ISeed<CatalogBrand>
     {
         private readonly CatalogContext dbContext;
@@ -33,6 +29,14 @@ namespace Seeds.Brands
 
         public class Yield : YieldOf<MicrosoftBrands>
         {
+            // NSEED-BEST-PRACTICES:
+            // These are so called seed markers. They uniquely identify yield produced by the seed.
+            // If markers are meaningful for other seeds that consume the yield, the best practice is to declar
+            // them as public static fields in the yield class.
+            // That way they can be used in the seed and in the seeds that use this yield.
+            // If they are not meaningful to other seeds, the best practice is to declare a private static
+            // nested class within the seed called Markers and to declare them in that class.
+            // That way markers will be internal to the seed and its yield class.
             public static string AzureName = "Azure";
             public static string DotNetName = ".NET";
             public static string VisualStudioName = "Visual Studio";

@@ -2,6 +2,7 @@
 using Microsoft.eShopWeb.Infrastructure.Data;
 using Microsoft.eShopWeb.Infrastructure.Identity;
 using System;
+using System.Threading.Tasks;
 
 namespace TemporarуYieldDestroyer
 {
@@ -11,19 +12,20 @@ namespace TemporarуYieldDestroyer
         {
             Console.WriteLine("Destroying all yield");
 
-            var options = new DbContextOptionsBuilder<CatalogContext>().UseSqlServer("Server=(localdb)\\mssqllocaldb;Integrated Security=true;Initial Catalog=NSeed.Microsoft.eShopOnWeb.CatalogDb;").Options;
-            var catalogContext = new CatalogContext(options);
-            catalogContext.Database.EnsureDeleted();
-            catalogContext.Database.Migrate();
-
-            var identityOptions = new DbContextOptionsBuilder<AppIdentityDbContext>().UseSqlServer("Server=(localdb)\\mssqllocaldb;Integrated Security=true;Initial Catalog=NSeed.Microsoft.eShopOnWeb.Identity;").Options;
-            var identityContext = new AppIdentityDbContext(identityOptions);
-            identityContext.Database.EnsureDeleted();
-            identityContext.Database.Migrate();
+            Task.WaitAll(Task.Run(() => DeleteAndRecreateDatabasе<CatalogContext>("CatalogDb", options => new CatalogContext(options))), Task.Run(() => DeleteAndRecreateDatabasе<AppIdentityDbContext>("Identity", options => new AppIdentityDbContext(options))));
 
             Console.ForegroundColor = ConsoleColor.DarkGreen;
             Console.WriteLine("All yield successfully destroyed");
             Console.ResetColor();
+
+            static void DeleteAndRecreateDatabasе<TDbContext>(string databaseName, Func<DbContextOptions<TDbContext>, TDbContext> createDbContext)
+                where TDbContext : DbContext
+            {
+                var options = new DbContextOptionsBuilder<TDbContext>().UseSqlServer($"Server=(localdb)\\mssqllocaldb;Integrated Security=true;Initial Catalog=NSeed.Microsoft.eShopOnWeb.{databaseName};").Options;
+                var catalogContext = createDbContext(options);
+                catalogContext.Database.EnsureDeleted();
+                catalogContext.Database.Migrate();
+            }
         }
     }
 }

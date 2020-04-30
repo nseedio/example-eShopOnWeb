@@ -41,13 +41,15 @@ namespace Seeds.Brands
             public static string DotNetName = ".NET";
             public static string VisualStudioName = "Visual Studio";
             public static string SqlServerName = "SQL Server";
+            public static string RoslynName = "Roslyn";
 
-            public static readonly string[] AllBrands = new string[] { AzureName, DotNetName, VisualStudioName, SqlServerName };
+            public static readonly string[] AllBrands = new string[] { AzureName, DotNetName, VisualStudioName, SqlServerName, RoslynName };
 
             public CatalogBrand Azure { get; }
             public CatalogBrand DotNet { get; }
             public CatalogBrand VisualStudio { get; }
             public CatalogBrand SqlServer { get; }
+            public CatalogBrand Roslyn { get; }
 
             public Yield(CatalogContext dbContext)
             {
@@ -57,6 +59,7 @@ namespace Seeds.Brands
                 DotNet = brands.First(brand => brand.Brand == DotNetName);
                 VisualStudio = brands.First(brand => brand.Brand == VisualStudioName);
                 SqlServer = brands.First(brand => brand.Brand == SqlServerName);
+                Roslyn = brands.First(brand => brand.Brand == RoslynName);
             }
         }
     }

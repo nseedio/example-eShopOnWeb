@@ -5,6 +5,11 @@ using System.Threading.Tasks;
 
 namespace Seeds.Users
 {
+    // NSEED-vNEXT: At the moment ElizabethBennet and TomSawyer seeds differ only in the user name.
+    //              Thus, we have a lot of code duplication here.
+    //              Soon NSeed will support so called seed variants. With seed variants it will be
+    //              possible to define parameterizable seeds and their concrete variants.
+    //              In this case, we will have a NamedUser seed with two variants, ElizabethBennet and TomSawyer.
     [FriendlyName("Elizabeth Bennet")]
     public class ElizabethBennet : ISeed<ApplicationUser>
     {

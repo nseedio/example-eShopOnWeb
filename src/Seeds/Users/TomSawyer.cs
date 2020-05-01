@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.eShopWeb.ApplicationCore.Entities.OrderAggregate;
 using Microsoft.eShopWeb.Infrastructure.Identity;
 using NSeed;
 using System.Threading.Tasks;
@@ -41,6 +42,8 @@ namespace Seeds.Users
 
         public class Yield : YieldOf<TomSawyer>
         {
+            public Address TomsAddress { get; } = new Address("123 Main St.", "St. Petersburg", "MO", "United States", "44240");
+
             public async Task<ApplicationUser> GetTomSawyer() => await Seed.userManager.FindByNameAsync(Markers.UserName);
         }
     }

@@ -12,17 +12,14 @@ namespace Seeds.CatalogTypes
 {
     public class MicrosoftSwagShopItems : ISeed<CatalogItem>
     {
-        // NSEED-BEST-PRACTICES:
-        // These are so called seed markers. They uniquely identify yield produced by the seed.
-        // If markers are meaningful for other seeds that consume the yield, the best practice is to declar
-        // them as public static fields in the yield class.
-        // That way they can be used in the seed and in the seeds that use this yield.
-        // If they are not meaningful to other seeds like in this cas   e, the best practice is to declare a private static
-        // nested class within the seed called Markers and to declare them in that class.
-        // That way markers will be internal to the seed and its yield class.
         private static class Markers
         {
-            public static readonly string DescriptionMarker = new Guid("{C2EB9FB2-8775-4DA7-AFD2-843E8867FF17}").ToShortString();
+            // NSEED-BEST-PRACTICES:
+            // When creating larger numbers of entities we often do not have a natural unique marker
+            // to distinguish them. In that case we create artificial unique markers often using
+            // GUIDs. NSeed Markers class provides extension methods for turning such unique values
+            // into markers that can be injected into entities.
+            public static readonly string DescriptionMarker = new Guid("{C2EB9FB2-8775-4DA7-AFD2-843E8867FF17}").ToStringMarker();
         }
 
         // NSEED-FEATURE:

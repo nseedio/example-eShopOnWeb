@@ -13,6 +13,11 @@ namespace Seeds.Users
     [FriendlyName("Tom Sawyer")]
     public class TomSawyer : ISeed<ApplicationUser>
     {
+        private static class Markers
+        {
+            public static string UserName = "tom.sawyer";
+        }
+
         private readonly UserManager<ApplicationUser> userManager;
 
         public TomSawyer(UserManager<ApplicationUser> userManager)
@@ -22,7 +27,7 @@ namespace Seeds.Users
 
         public async Task Seed()
         {
-            var user = new ApplicationUser { UserName = Yield.UserName, Email = Yield.UserName + "@google.com"};
+            var user = new ApplicationUser { UserName = Markers.UserName, Email = Markers.UserName + "@google.com"};
             var identityResult = await userManager.CreateAsync(user, UserConstants.Password);
             // NSEED-vNEXT: Ideally, we want to check here if the identity result is successful and stop seeding if it is not.
             //              In the upcoming versions NSeed will have built-in support for asserting such expectations.
@@ -31,14 +36,12 @@ namespace Seeds.Users
 
         public async Task<bool> HasAlreadyYielded()
         {
-            return await userManager.FindByNameAsync(Yield.UserName) != null;
+            return await userManager.FindByNameAsync(Markers.UserName) != null;
         }
 
         public class Yield : YieldOf<TomSawyer>
         {
-            public static string UserName = "tom.sawyer";
-
-            public async Task<ApplicationUser> GetTomSawyer() => await Seed.userManager.FindByNameAsync(UserName);
+            public async Task<ApplicationUser> GetTomSawyer() => await Seed.userManager.FindByNameAsync(Markers.UserName);
         }
     }
 }

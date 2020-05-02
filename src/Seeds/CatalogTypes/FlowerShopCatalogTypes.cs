@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Seeds.CatalogTypes
 {
-    public class FlowersShopCatalogTypes : ISeed<CatalogType>
+    public class FlowerShopCatalogTypes : ISeed<CatalogType>
     {
         // NSEED-BEST-PRACTICES:
         // These are so called seed markers. They uniquely identify yield produced by this seed.
@@ -28,7 +28,7 @@ namespace Seeds.CatalogTypes
 
         private readonly CatalogContext dbContext;
 
-        public FlowersShopCatalogTypes(CatalogContext dbContext)
+        public FlowerShopCatalogTypes(CatalogContext dbContext)
         {
             this.dbContext = dbContext;
         }
@@ -44,7 +44,7 @@ namespace Seeds.CatalogTypes
             return await dbContext.CatalogTypes.CountAsync(catalogType => Markers.AllFlowers.Contains(catalogType.Type)) == Markers.AllFlowers.Length;
         }
 
-        public class Yield : YieldOf<FlowersShopCatalogTypes>
+        public class Yield : YieldOf<FlowerShopCatalogTypes>
         {
             // NSEED-BEST-PRACTICES:
             // Sometimes markers can be useful to use directly by other seeds that require some yield.

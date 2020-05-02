@@ -17,8 +17,8 @@ namespace Seeds.Orders
     {
         private TomSawyer.Yield TomSawyer { get; set; }
         private FlowerBrands.Yield Brands { get; set; }
-        private FlowersShopCatalogTypes.Yield CatalogTypes { get; set; }
-        private FlowersShopItems.Yield ShopItems { get; set; }
+        private FlowerShopCatalogTypes.Yield CatalogTypes { get; set; }
+        private FlowerShopItems.Yield ShopItems { get; set; }
 
         private readonly IAsyncRepository<Basket> basketRepository;
         private readonly IOrderService orderService;

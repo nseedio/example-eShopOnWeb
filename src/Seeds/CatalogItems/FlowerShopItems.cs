@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Seeds.CatalogItems
 {
-    public class FlowersShopItems : ISeed<CatalogItem>
+    public class FlowerShopItems : ISeed<CatalogItem>
     {
         private static class Markers
         {
@@ -29,11 +29,11 @@ namespace Seeds.CatalogItems
         // NSeed engine will automatically seed the required seeds if needed,
         // create the requested yield objects and set the below properties.
         private FlowerBrands.Yield Brands { get; set; }
-        private FlowersShopCatalogTypes.Yield CatalogTypes { get; set; }
+        private FlowerShopCatalogTypes.Yield CatalogTypes { get; set; }
 
         private readonly CatalogContext dbContext;
 
-        public FlowersShopItems(CatalogContext dbContext)
+        public FlowerShopItems(CatalogContext dbContext)
         {
             this.dbContext = dbContext;
         }
@@ -63,7 +63,7 @@ namespace Seeds.CatalogItems
             return await dbContext.CatalogItems.AnyAsync(catalogItem => catalogItem.Description.Contains(Markers.DescriptionMarker));
         }
 
-        public class Yield : YieldOf<FlowersShopItems>
+        public class Yield : YieldOf<FlowerShopItems>
         {
             public async Task<IReadOnlyCollection<CatalogItem>> GetAllItems() => await Seed.dbContext.CatalogItems.Where(catalogItem => catalogItem.Description.Contains(Markers.DescriptionMarker)).ToArrayAsync();
         }

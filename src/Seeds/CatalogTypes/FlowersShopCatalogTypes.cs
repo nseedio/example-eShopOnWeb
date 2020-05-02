@@ -62,7 +62,7 @@ namespace Seeds.CatalogTypes
             // If a yield class provides properties, this implies that the provided objects are fetched only once
             // from the persistance store.
             // If they are fetched every time, methods should be used instead of properties. E.g. GetMug();
-            public CatalogType Plants { get; }
+            public CatalogType Plant { get; }
             public CatalogType Flower { get; }
             public CatalogType Bouquet { get; }
 
@@ -70,7 +70,7 @@ namespace Seeds.CatalogTypes
             {
                 var catalogTypes = dbContext.CatalogTypes.Where(catalogType => Markers.AllFlowers.Contains(catalogType.Type)).ToArray();
 
-                Plants = catalogTypes.First(catalogType => catalogType.Type == Markers.Plant);
+                Plant = catalogTypes.First(catalogType => catalogType.Type == Markers.Plant);
                 Flower = catalogTypes.First(catalogType => catalogType.Type == Markers.Flower);
                 Bouquet = catalogTypes.First(catalogType => catalogType.Type == Markers.Bouquet);
             }

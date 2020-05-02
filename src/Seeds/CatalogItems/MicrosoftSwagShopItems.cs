@@ -3,12 +3,13 @@ using Microsoft.eShopWeb.ApplicationCore.Entities;
 using Microsoft.eShopWeb.Infrastructure.Data;
 using NSeed;
 using Seeds.Brands;
+using Seeds.CatalogTypes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Seeds.CatalogTypes
+namespace Seeds.CatalogItems
 {
     public class MicrosoftSwagShopItems : ISeed<CatalogItem>
     {

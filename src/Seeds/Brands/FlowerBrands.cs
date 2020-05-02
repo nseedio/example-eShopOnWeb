@@ -43,7 +43,6 @@ namespace Seeds.Brands
             public CatalogBrand RoseCelebration { get; }
             public CatalogBrand FloristDesignedBouquet { get; }
             public CatalogBrand PicturesqueOrchid { get; }
-            public CatalogBrand Roslyn { get; }
 
             public Yield(CatalogContext dbContext)
             {

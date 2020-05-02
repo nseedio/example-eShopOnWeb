@@ -1,5 +1,5 @@
 ﻿using NSeed;
-using Seeds.CatalogTypes;
+using Seeds.CatalogItems;
 
 namespace Seeds.Scenarios
 {

@@ -5,7 +5,7 @@ using Microsoft.eShopWeb.ApplicationCore.Interfaces;
 using Microsoft.eShopWeb.Infrastructure.Data;
 using NSeed;
 using Seeds.Brands;
-using Seeds.CatalogTypes;
+using Seeds.CatalogItems;
 using System.Linq;
 using System.Threading.Tasks;
 

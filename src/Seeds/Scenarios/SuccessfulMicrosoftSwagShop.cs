@@ -1,5 +1,5 @@
 ﻿using NSeed;
-using Seeds.Users;
+using Seeds.Orders;
 
 namespace Seeds.Scenarios
 {

@@ -6,24 +6,25 @@ using Microsoft.eShopWeb.Infrastructure.Data;
 using NSeed;
 using Seeds.Brands;
 using Seeds.CatalogItems;
+using Seeds.CatalogTypes;
 using Seeds.Users;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace Seeds.Orders
 {
-    [FriendlyName("Tom orders Roslyn swags")]
-    public class TomOrdersRoslynSwags : ISeed<Order>
+    public class TomOrdersRoses : ISeed<Order>
     {
         private TomSawyer.Yield TomSawyer { get; set; }
-        private MicrosoftBrands.Yield Brands { get; set; }
-        private MicrosoftSwagShopItems.Yield ShopItems { get; set; }
+        private FlowerBrands.Yield Brands { get; set; }
+        private FlowersShopCatalogTypes.Yield CatalogTypes { get; set; }
+        private FlowersShopItems.Yield ShopItems { get; set; }
 
         private readonly IAsyncRepository<Basket> basketRepository;
         private readonly IOrderService orderService;
         private readonly CatalogContext dbContext;
 
-        public TomOrdersRoslynSwags(IAsyncRepository<Basket> basketRepository, IOrderService orderService, CatalogContext dbContext)
+        public TomOrdersRoses(IAsyncRepository<Basket> basketRepository, IOrderService orderService, CatalogContext dbContext)
         {
             this.basketRepository = basketRepository;
             this.orderService = orderService;
@@ -33,11 +34,11 @@ namespace Seeds.Orders
         public async Task Seed()
         {
             var buyerId = (await TomSawyer.GetTomSawyer()).UserName;
-            var roslynItems = (await ShopItems.GetAllItems()).Where(item => item.CatalogBrandId == Brands.Roslyn.Id);
+            var rosesItems = (await ShopItems.GetAllItems()).Where(item => item.CatalogBrandId == Brands.RoseCelebration.Id && item.CatalogTypeId == CatalogTypes.Flower.Id);
 
             // Create temporary basket and fill it with all the items that have Roslyn as a brand.
             var basket = new Basket(buyerId);
-            foreach (var item in roslynItems)
+            foreach (var item in rosesItems)
             {
                 basket.AddItem(item.Id, item.Price, 1);
             }
@@ -52,9 +53,9 @@ namespace Seeds.Orders
         public async Task<bool> HasAlreadyYielded()
         {
             var buyerId = (await TomSawyer.GetTomSawyer()).UserName;
-            var roslynItemsIds = (await ShopItems.GetAllItems()).Where(item => item.CatalogBrandId == Brands.Roslyn.Id).Select(item => item.Id);
+            var rosesItemsIds = (await ShopItems.GetAllItems()).Where(item => item.CatalogBrandId == Brands.RoseCelebration.Id && item.CatalogTypeId == CatalogTypes.Flower.Id).Select(item => item.Id);
 
-            return await dbContext.Orders.AnyAsync(order => order.BuyerId == buyerId && order.OrderItems.All(item => roslynItemsIds.Contains(item.ItemOrdered.CatalogItemId)));
+            return await dbContext.Orders.AnyAsync(order => order.BuyerId == buyerId && order.OrderItems.All(item => rosesItemsIds.Contains(item.ItemOrdered.CatalogItemId)));
         }
 
         // NSEED-BEST-PRACTICES:

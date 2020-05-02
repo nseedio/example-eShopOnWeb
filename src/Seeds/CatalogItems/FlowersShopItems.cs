@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Seeds.CatalogItems
 {
-    public class FlowerShopItems : ISeed<CatalogItem>
+    public class FlowersShopItems : ISeed<CatalogItem>
     {
         private static class Markers
         {
@@ -33,7 +33,7 @@ namespace Seeds.CatalogItems
 
         private readonly CatalogContext dbContext;
 
-        public FlowerShopItems(CatalogContext dbContext)
+        public FlowersShopItems(CatalogContext dbContext)
         {
             this.dbContext = dbContext;
         }
@@ -63,7 +63,7 @@ namespace Seeds.CatalogItems
             return await dbContext.CatalogItems.AnyAsync(catalogItem => catalogItem.Description.Contains(Markers.DescriptionMarker));
         }
 
-        public class Yield : YieldOf<FlowerShopItems>
+        public class Yield : YieldOf<FlowersShopItems>
         {
             public async Task<IReadOnlyCollection<CatalogItem>> GetAllItems() => await Seed.dbContext.CatalogItems.Where(catalogItem => catalogItem.Description.Contains(Markers.DescriptionMarker)).ToArrayAsync();
         }

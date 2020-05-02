@@ -7,10 +7,11 @@ using NSeed;
 using Seeds.Brands;
 using Seeds.CatalogItems;
 using Seeds.CatalogTypes;
+using Seeds.Users;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Seeds.Users
+namespace Seeds.Orders
 {
     [FriendlyName("Tom orders .NET mugs")]
     public class TomOrdersDotNetMugs : ISeed<Order>

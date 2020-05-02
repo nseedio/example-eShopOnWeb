@@ -35,7 +35,7 @@ namespace Seeds.Orders
             var buyerId = (await TomSawyer.GetTomSawyer()).UserName;
             var roslynItems = (await ShopItems.GetAllItems()).Where(item => item.CatalogBrandId == Brands.Roslyn.Id);
 
-            // Create temporary basket and fill it with all the items that have Roslyn as a brand.
+            // Create temporary basket and fill it with all the items.
             var basket = new Basket(buyerId);
             foreach (var item in roslynItems)
             {

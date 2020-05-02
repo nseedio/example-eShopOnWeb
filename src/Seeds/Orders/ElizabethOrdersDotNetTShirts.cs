@@ -37,7 +37,7 @@ namespace Seeds.Orders
             var buyerId = (await ElizabethBennet.GetElizabethBennet()).UserName;
             var dotNetTShirtItems = (await ShopItems.GetAllItems()).Where(item => item.CatalogBrandId == Brands.DotNet.Id && item.CatalogTypeId == CatalogTypes.TShirt.Id);
 
-            // Create temporary basket and fill it with all the items that have Roslyn as a brand.
+            // Create temporary basket and fill it with all the items.
             var basket = new Basket(buyerId);
             foreach (var item in dotNetTShirtItems)
             {

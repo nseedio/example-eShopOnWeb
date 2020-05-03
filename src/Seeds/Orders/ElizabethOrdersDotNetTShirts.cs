@@ -45,7 +45,7 @@ namespace Seeds.Orders
             }
             basket = await basketRepository.AddAsync(basket);
 
-            await orderService.CreateOrderAsync(basket.Id, ElizabethBennet.ElizabethsAddress);
+            await orderService.CreateOrderAsync(basket.Id, ElizabethBennet.GetElizabethsAddress());
 
             // Delete temporary basket.
             await basketRepository.DeleteAsync(basket);

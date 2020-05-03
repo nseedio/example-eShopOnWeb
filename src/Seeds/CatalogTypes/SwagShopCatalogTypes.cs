@@ -50,7 +50,7 @@ namespace Seeds.CatalogTypes
             // NSEED-BEST-PRACTICES:
             // Sometimes markers can be useful to use directly by other seeds that require some yield.
             // In that case, expose them via properties on the Yield class, like in this case.
-            // NSEED-WARNING:
+            // NSEED-NOTE:
             // This should be an exception and not the rule and should rarely be needed.
             // The best practice is not to expose markers until there is a clear need for that.
             // A need can be e.g. allowing other seeds to write arbitrary optimized queries to fetch

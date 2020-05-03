@@ -2,6 +2,8 @@
 using Microsoft.eShopWeb.ApplicationCore.Entities;
 using Microsoft.eShopWeb.Infrastructure.Data;
 using NSeed;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -43,6 +45,7 @@ namespace Seeds.Brands
             public CatalogBrand RoseCelebration { get; }
             public CatalogBrand FloristDesignedBouquet { get; }
             public CatalogBrand PicturesqueOrchid { get; }
+            public IReadOnlyCollection<CatalogBrand> AllBrands { get; }
 
             public Yield(CatalogContext dbContext)
             {
@@ -52,6 +55,8 @@ namespace Seeds.Brands
                 RoseCelebration = brands.First(brand => brand.Brand == Markers.RoseCelebration);
                 FloristDesignedBouquet = brands.First(brand => brand.Brand == Markers.FloristDesignedBouquet);
                 PicturesqueOrchid = brands.First(brand => brand.Brand == Markers.PicturesqueOrchid);
+
+                AllBrands = new[] { GreenPlant, RoseCelebration, FloristDesignedBouquet, PicturesqueOrchid };
             }
         }
     }

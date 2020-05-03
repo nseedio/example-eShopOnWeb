@@ -7,7 +7,7 @@ namespace Seeds.Scenarios
     [Requires(typeof(TomOrdersRoslynSwags))]
     [Requires(typeof(ElizabethOrdersDotNetTShirts))]
     [FriendlyName("Successful Microsoft swag shop")]
-    [Description("Microsoft swag shop that has a lot of orders.")]
+    [Description("Microsoft swag shop that has lots of orders.")]
     public class SuccessfulMicrosoftSwagShop : IScenario
     {
     }

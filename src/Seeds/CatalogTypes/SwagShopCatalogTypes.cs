@@ -2,6 +2,7 @@
 using Microsoft.eShopWeb.ApplicationCore.Entities;
 using Microsoft.eShopWeb.Infrastructure.Data;
 using NSeed;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -68,6 +69,7 @@ namespace Seeds.CatalogTypes
             public CatalogType TShirt { get; }
             public CatalogType Sheet { get; }
             public CatalogType UsbMemoryStick { get; }
+            public IReadOnlyCollection<CatalogType> AllCatalogTypes { get; }
 
             public Yield(CatalogContext dbContext)
             {
@@ -77,6 +79,8 @@ namespace Seeds.CatalogTypes
                 TShirt = catalogTypes.First(catalogType => catalogType.Type == Markers.TShirtName);
                 Sheet = catalogTypes.First(catalogType => catalogType.Type == Markers.SheetName);
                 UsbMemoryStick = catalogTypes.First(catalogType => catalogType.Type == Markers.UsbMemoryStickName);
+
+                AllCatalogTypes = new[] { Mug, TShirt, Sheet, UsbMemoryStick };
             }
         }
     }

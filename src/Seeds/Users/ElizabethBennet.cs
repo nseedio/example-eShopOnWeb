@@ -28,7 +28,7 @@ namespace Seeds.Users
 
         public async Task Seed()
         {
-            var user = new ApplicationUser { UserName = Markers.UserName, Email = Markers.UserName + "@google.com"};
+            var user = new ApplicationUser { UserName = Markers.UserName, Email = Markers.UserName + "@gmail.com"};
             var identityResult = await userManager.CreateAsync(user, UserConstants.Password);
             // NSEED-vNEXT: Ideally, we want to check here if the identity result is successful and stop seeding if it is not.
             //              In the upcoming versions NSeed will have built-in support for asserting such expectations.

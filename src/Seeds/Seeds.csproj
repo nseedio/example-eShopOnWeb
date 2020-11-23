@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Bogus" Version="31.0.3" />
     <PackageReference Include="NSeed" Version="0.3.0-lab3" />
   </ItemGroup>
 
